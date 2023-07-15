@@ -1,0 +1,125 @@
+<div class="container">
+  <div>
+    <h2>Reporting for Chest X-ray in the PA view:</h2>
+  </div>
+  <div>
+  <form [formGroup]="registrationForm">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
+      <div class="col">
+        <!-- <label>Name:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input
+            matInput
+            placeholder="Enter Full Name"
+            type="text"
+            formControlName="Fname"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <!-- <label>UHID:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>UHID</mat-label>
+          <input
+            matInput
+            placeholder="Enter ID"
+            type="text"
+            formControlName="uhid"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <!-- <label>Ref No:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Ref. by</mat-label>
+          <input
+            matInput
+            placeholder="Enter Reference No"
+            type="text"
+            formControlName="rNo"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4">
+      <div class="col">
+        <!-- <label>Age:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Age</mat-label>
+          <input
+            matInput
+            placeholder="Enter Your Age"
+            type="number"
+            formControlName="age"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <!-- <label>Sex:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Sex</mat-label>
+          <input
+            matInput
+            placeholder="Enter Your Sex"
+            type="text"
+            formControlName="sex"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <!-- <label>Mobile No:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Mobile No.</mat-label>
+          <input
+            matInput
+            placeholder="Enter Your Mobile No."
+            type="text"
+            formControlName="mobileNo"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <!-- <label>Reporting Director:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Reporting Director</mat-label>
+          <input
+            matInput
+            placeholder="Enter Reporting Director"
+            type="text"
+            formControlName="director"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  </div>
+
+  <div>
+    <div>
+        <h2>Lung Field:</h2>
+    </div>
+    <div>
+        <app-lung-data></app-lung-data>
+    </div>
+  </div>
+
+  <div>
+    <div>
+        <h2>Bilateral Pulmonary Hilum:</h2>
+    </div>
+    <div>
+        <app-bilateral></app-bilateral>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" (click)="onClick()">Proceed<mat-icon>done</mat-icon></button>
+  </div>
+</div>

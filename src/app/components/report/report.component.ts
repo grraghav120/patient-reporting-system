@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { BussinessService } from 'src/app/services/bussiness.service';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
 
 @Component({
@@ -28,12 +29,15 @@ export class ReportComponent implements OnInit {
   openSoftTissue: boolean=false;
   openCostophrenicAngles: boolean=false;
 
-  constructor(public dialog: MatDialog){}
+  constructor(
+    public dialog: MatDialog,
+    public businessData:BussinessService
+    ){}
 
   CardiacShape:any="";
-  bronchovascularmarking="";
-  bronchovascularmarkingSide=""
-  bronchovascularmarkingRegion="";
+  BronchoVascularMarking="";
+  BronchoVascularMarkingSide=""
+  BronchoVascularMarkingRegion="";
   opacity="";
   opacitySide="";
   opacityRegion="";
@@ -44,6 +48,7 @@ export class ReportComponent implements OnInit {
   masses="";
   massesRegion="";
   hilum="";
+  hilumSide:any='';
   trachea="";
   tracheaShiftSide="";
   mediastinal="";
@@ -150,17 +155,19 @@ export class ReportComponent implements OnInit {
     else this.openCostophrenicAngles=false;
   }
   onClick(patientForm:NgForm){
-    console.log(patientForm);
     if(patientForm.invalid){
-      this.openDialog();
+      this.openDialog('fields');
+      return
     }
+    this.businessData.savePatientData(patientForm.value);
+    this.openDialog('alert')
   }
 
-  openDialog(){
+  openDialog(mesg:any){
     let dialogRef=this.dialog.open(AlertComponent,{
       width:'auto',
       height:'auto',
-      data:{msg:'fields'},
+      data:{msg:mesg},
     });
   }
 

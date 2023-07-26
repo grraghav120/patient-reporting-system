@@ -1,19 +1,36 @@
 <div class="container">
-  <div>
+  <div style="display: flex; justify-content: center;">
     <h2>Reporting for Chest X-ray in the PA view:</h2>
   </div>
   <div>
-  <form [formGroup]="registrationForm">
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3">
+    <h2 style="display: flex;align-items: center;">
+      Patient Information <mat-icon>info</mat-icon>
+    </h2>
+  </div>
+  <div class="mainForm">
+  <form [formGroup]="registrationForm" style="width: 100%;">
+    <div class="row row-cols-sm-1 row-cols-md-3 row-cols-xs-3">
       <div class="col">
-        <!-- <label>Name:</label> -->
         <mat-form-field appearance="outline">
-          <mat-label>Full Name</mat-label>
+          <mat-label>Name</mat-label>
           <input
             matInput
-            placeholder="Enter Full Name"
+            placeholder="Enter First Name"
             type="text"
             formControlName="Fname"
+          />
+          <!-- <mat-error>Enter your Full Name</mat-error> -->
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <!-- <label>Last Name:</label> -->
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            placeholder="Enter Last Name"
+            type="text"
+            formControlName="Lname"
           />
           <!-- <mat-error>Enter your Full Name</mat-error> -->
         </mat-form-field>
@@ -45,18 +62,16 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-4 row-cols-xs-4">
       <div class="col">
-        <!-- <label>Age:</label> -->
         <mat-form-field appearance="outline">
           <mat-label>Age</mat-label>
           <input
             matInput
-            placeholder="Enter Your Age"
+            placeholder="Enter Age"
             type="number"
             formControlName="age"
           />
-          <!-- <mat-error>Enter your Full Name</mat-error> -->
         </mat-form-field>
       </div>
       <div class="col">
@@ -65,7 +80,7 @@
           <mat-label>Sex</mat-label>
           <input
             matInput
-            placeholder="Enter Your Sex"
+            placeholder="Enter Age/Sex"
             type="text"
             formControlName="sex"
           />
@@ -78,7 +93,7 @@
           <mat-label>Mobile No.</mat-label>
           <input
             matInput
-            placeholder="Enter Your Mobile No."
+            placeholder="Enter Mobile No."
             type="text"
             formControlName="mobileNo"
           />
@@ -107,7 +122,7 @@
         <h2>Lung Field:</h2>
     </div>
     <div>
-        <app-lung-data></app-lung-data>
+        <!-- <app-lung-data></app-lung-data> -->
     </div>
   </div>
 
@@ -116,7 +131,7 @@
         <h2>Bilateral Pulmonary Hilum:</h2>
     </div>
     <div>
-        <app-bilateral></app-bilateral>
+        <!-- <app-bilateral></app-bilateral> -->
     </div>
   </div>
   <div>

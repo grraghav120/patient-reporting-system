@@ -49,6 +49,7 @@ export class ReportComponent implements OnInit {
   massesSide="";
   masses="";
   massesRegion="";
+  // massesRegion: string[] = [];
   hilum="";
   hilumSide:any='';
   trachea="";
@@ -82,10 +83,32 @@ export class ReportComponent implements OnInit {
   AorticKnuckleUnfoldingofAorta="";
   SoftTissueAbnormal="";
   BreastShadowAbnormal="";
+
+  options = [
+    { label: 'All Zones', value: 'All Zones', checked: false },
+    { label: 'Mid Zone', value: 'Mid Zone', checked: false },
+    { label: 'Lower Zone', value: 'Lower Zone', checked: false },
+    { label: 'Upper Zone', value: 'Upper Zone', checked: false }
+  ];
   
   ngOnInit(): void {
     
   }
+
+  // toggleOption(option: any) {
+  //   option.checked = !option.checked;
+  // }
+
+  // toggleOption(event:any) {
+  //   console.log(event);
+    
+  //   // if (this.massesRegion.includes(option)) {
+  //   //   this.massesRegion = this.massesRegion.filter(item => item !== option);
+  //   // } else {
+  //   //   this.massesRegion.push(option);
+  //   // }
+  // }
+
 
   onCardiacSizeChanged(event:any){
     console.log(event);
@@ -185,12 +208,12 @@ export class ReportComponent implements OnInit {
     else this.openCostophrenicAngles=false;
   }
   onClick(patientForm:NgForm){
-    if(patientForm.invalid){
-      this.openDialog('fields');
-      return
-    }
+    // if(patientForm.invalid){
+    //   this.openDialog('fields');
+    //   return
+    // }
     this.businessData.savePatientData(patientForm.value);
-    this.openDialog('alert')
+    this.openDialog('alert');
   }
 
   openDialog(mesg:any){

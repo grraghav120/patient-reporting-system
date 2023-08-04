@@ -162,17 +162,19 @@
       </div>
       <div class="col-md-4 col-sm-12 columns" *ngIf="openOpacity">
         <div><label>Please Specify Region*</label></div>
-        <!-- <select class="form-select" required aria-label="Default select example"
+        <select class="form-select" required aria-label="Default select example"
         [(ngModel)]="opacityRegion"
         name="opacityRegion"
-          > -->
-          <!-- <option value="" disabled selected>Select</option>
+          >
+          <option value="" disabled selected>Select</option>
+          <option value="All Zone">All Zones</option>
+          <option value="Upper Mid Zone">Upper Mid Zone</option>
+          <option value="Lower Mid Zone">Lower Mid Zone</option>
           <option value="Upper Zone">Upper Zone</option>
-          <option value="All Zone">All Zone</option>
           <option value="Mid Zone">Mid Zone</option>
-          <option value="Lower Zone">Lower Zone</option> -->
-        <!-- </select> -->
-        <div class="form-check form-check-inline">
+          <option value="Lower Zone">Lower Zone</option>
+        </select>
+        <!-- <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
           <label class="form-check-label" for="inlineCheckbox1">All Zones</label>
         </div>
@@ -187,7 +189,7 @@
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
           <label class="form-check-label" for="inlineCheckbox4">Upper Zone</label>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -223,15 +225,18 @@
       </div>
       <div class="col-md-4 col-sm-12 columns" *ngIf="openCavity">
         <div><label>Please Specify Region*</label></div>
-        <!-- <select class="form-select"  required aria-label="Default select example"
+        <select class="form-select"  required aria-label="Default select example"
         [(ngModel)]="cavityRegion"
         name="cavityRegion">
           <option value="" disabled selected>Select</option>
+          <option value="Upper Mid Zone">Upper Mid Zone</option>
+          <option value="Lower Mid Zone">Lower Mid Zone</option>
+          <option value="All Zones">All Zones</option>
           <option value="Upper Zone">Upper Zone</option>
           <option value="Mid Zone">Mid Zone</option>
           <option value="Lower Zone">Lower Zone</option>
-        </select> -->
-        <div class="form-check form-check-inline">
+        </select>
+        <!-- <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
           <label class="form-check-label" for="inlineCheckbox1">All Zones</label>
         </div>
@@ -246,7 +251,7 @@
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
           <label class="form-check-label" for="inlineCheckbox4">Upper Zone</label>
-        </div>
+        </div> -->
       </div>
     </div>
     <!--Masses-->
@@ -279,30 +284,39 @@
       </div>
       <div class="col-md-4 col-sm-12 columns" *ngIf="openMasses">
         <div><label>Please Specify Region*</label></div>
-        <!-- <select class="form-select" required aria-label="Default select example" [(ngModel)]="massesRegion"
+        <select class="form-select" required aria-label="Default select example" [(ngModel)]="massesRegion"
         name="massesRegion">
           <option value="" disabled selected>Select</option>
           <option value="all">All Zones</option>
+          <option value="Upper Mid Zone">Upper Mid Zone</option>
+          <option value="Lower Mid Zone">Lower Mid Zone</option>
           <option value="Upper Zone">Upper Zone</option>
           <option value="Mid Zone">Mid Zone</option>
           <option value="Lower Zone">Lower Zone</option>
-        </select> -->
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+        </select>
+        <!-- <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="All Zones" name="massesRegion" (change)="toggleOption($event)"  [(ngModel)]="massesRegion">
           <label class="form-check-label" for="inlineCheckbox1">All Zones</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Mid Zone"  name="massesRegion" (change)="toggleOption($event)" [(ngModel)]="massesRegion">
           <label class="form-check-label" for="inlineCheckbox2">Mid Zone </label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option1">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Lower Zone"  name="massesRegion" (change)="toggleOption($event)" [(ngModel)]="massesRegion">
           <label class="form-check-label" for="inlineCheckbox3">Lower Zone</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
+          <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="Upper Zone"  name="massesRegion" (change)="toggleOption($event)" [(ngModel)]="massesRegion">
           <label class="form-check-label" for="inlineCheckbox4">Upper Zone</label>
-        </div>
+        </div> -->
+
+        <!-- <div *ngFor="let option of options" class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" [id]="option.value" [value]="option.value"
+                 [(ngModel)]="massesRegion" [name]="massesRegion" (change)="toggleOption(option)">{{option.value}}
+          <label class="form-check-label" [for]="option.value">{{ option.label }}</label>
+        </div> -->
+
       </div>
     </div>
 
@@ -474,7 +488,7 @@
           </select>
         </div>
         <div class="col-md-4 col-sm-12 columns" *ngIf="openCardic">
-          <label>Please Specify Abnormal*</label>
+          <label>Please Specify Cardiac Shape Abnormal*</label>
           <select
             class="form-select"
             [(ngModel)]="CardiacShapeAbnormal"

@@ -28,6 +28,8 @@ export class ReportComponent implements OnInit {
   openDiaphragm: boolean=false;
   openSoftTissue: boolean=false;
   openCostophrenicAngles: boolean=false;
+  openCardicShaped: boolean=false;
+  ribnumber: boolean=false;
 
   constructor(
     public dialog: MatDialog,
@@ -57,8 +59,9 @@ export class ReportComponent implements OnInit {
   CardiacShapeAbnormal="";
   BreastShadow="";
   BreastShadowSide=""
-  Diaphragm="";
-  DiaphragmSide="";
+  HemiDiaphragm="";
+  HemiDiaphragmSide="";
+  HemiDiaphragmAbormal="";
   SoftTissue="";
   SoftTissueSide="";
   FractureRibNumber="";
@@ -74,9 +77,24 @@ export class ReportComponent implements OnInit {
   LymphNodes="";
   AorticKnuckleAbnormal="";
   AorticKnuckle="";
+  ProminentHilumSpecify="";
+  AorticKnuckleCalcification="";
+  AorticKnuckleUnfoldingofAorta="";
+  SoftTissueAbnormal="";
+  BreastShadowAbnormal="";
+  
   ngOnInit(): void {
     
   }
+
+  onCardiacSizeChanged(event:any){
+    console.log(event);
+    
+    if(event.target.value==='Enlarged') {this.openCardicShaped=true;console.log('enlarged');}
+    
+    this.openCardicShaped=false;
+  }
+
   onChangeBroncho(event:any){
     if(event.target.value==='Prominent') this.openfirst=true;
     else this.openfirst=false;
@@ -120,13 +138,25 @@ export class ReportComponent implements OnInit {
   }
 
   onFinding(event:any){
-    if(event.target.value==='fracture'){
+    if(event.target.value==='Fracture'){
       this.fracture=true;
       this.openbony=false;
+      this.ribnumber=false;
     }
-    else{
+    else if(event.target.value==="Bony Lesion"){
       this.openbony=true;
       this.fracture=false;
+      this.ribnumber=false;
+    }
+    else if(event.target.value==="Dysplasia of Ribs"){
+      this.openbony=false;
+      this.fracture=false;
+      this.ribnumber=true;
+    }
+    else{
+      this.openbony=false;
+      this.fracture=false;
+      this.ribnumber=false;
     }
   }
 
@@ -146,7 +176,7 @@ export class ReportComponent implements OnInit {
   }
 
   onSoftTissue(event:any){
-    if(event.target.value==='Present') this.openSoftTissue=true;
+    if(event.target.value==='Abnormal') this.openSoftTissue=true;
     else this.openSoftTissue=false;
   }
 
@@ -190,6 +220,8 @@ export class ReportComponent implements OnInit {
     this.openDiaphragm=false;
     this.openSoftTissue=false;
     this.openCostophrenicAngles=false;
+    this.openCardicShaped=false;
+    this.ribnumber=false;
 
   }
 

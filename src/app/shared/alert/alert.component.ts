@@ -16,6 +16,8 @@ export class AlertComponent implements OnInit{
   onDownlad(){ //By Raghav Garg
     let data=this.business.getAllPatientData();
     let csv=this.csvConverter.unparse([data]);
+    console.log(csv);
+    // this.business.sendEmail(csv);
     const blob= new Blob([csv],{type:'text/csv'});
     const url=window.URL.createObjectURL(blob);
     const link=document.createElement('a');

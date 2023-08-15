@@ -16,7 +16,7 @@ import { ReportComponent } from './components/report/report.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from './shared/alert/alert.component';
-// import {PapaParse} from 'papaparse'
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -36,6 +36,7 @@ import { AlertComponent } from './shared/alert/alert.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatDialogModule,
     MatIconModule,

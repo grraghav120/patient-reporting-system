@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { BussinessService } from 'src/app/services/bussiness.service';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
-
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -33,7 +32,8 @@ export class ReportComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public businessData:BussinessService
+    public businessData:BussinessService,
+
     ){}
 
   CardiacShape:any="";
@@ -208,12 +208,13 @@ export class ReportComponent implements OnInit {
     else this.openCostophrenicAngles=false;
   }
   onClick(patientForm:NgForm){
-    // if(patientForm.invalid){
-    //   this.openDialog('fields');
-    //   return
-    // }
+    if(patientForm.invalid){
+      this.openDialog('fields');
+      return
+    }
     this.businessData.savePatientData(patientForm.value);
     this.openDialog('alert');
+    // this.businessData.sendEmail(patientForm.value);
   }
 
   openDialog(mesg:any){

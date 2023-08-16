@@ -250,7 +250,7 @@ export class ReportComponent implements OnInit {
 
   onReset(){
     this.showPreview=false;
-    document.body.removeChild(this.iframe);
+    // document.body.removeChild(this.iframe);
     this.patientForm.reset();
     this.openfirst=false;
     this.openHilum=false;

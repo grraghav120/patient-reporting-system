@@ -85,7 +85,7 @@ export class ReportComponent implements OnInit {
   AorticKnuckleUnfoldingofAorta="";
   SoftTissueAbnormal="";
   BreastShadowAbnormal="";
-  
+  showPreview:boolean=false;
   ngOnInit(): void {
     
   }
@@ -194,17 +194,20 @@ export class ReportComponent implements OnInit {
   }
 
   onClick(patientForm:NgForm){
-    if(patientForm.invalid){
-      this.openDialog('fields');
-      return
-    }
+    // if(patientForm.invalid){
+    //   this.openDialog('fields');
+    //   return
+    // }
     this.businessData.savePatientData(patientForm.value);
     this.businessData.getPdf().subscribe(
       pdfBlob => {
         this.pdfUrl = this.getSafeUrl(pdfBlob);
-        window.open(this.pdfUrl.changingThisBreaksApplicationSecurity, '_blank'); 
+        this.showPreview=true;
+        this.onPdfLoad();
+        // window.open(this.pdfUrl.changingThisBreaksApplicationSecurity, '_blank'); 
       },
       error => {
+        this.showPreview=false;
         this.openDialog('pdfError');
       }
     );
@@ -218,8 +221,24 @@ export class ReportComponent implements OnInit {
       data:{msg:mesg},
     });
   }
+  iframe:any;
+
+  onPdfLoad(): void {
+    console.log('/...../');
+
+    const iframe = document.createElement('iframe');
+    iframe.style.visibility = 'hidden';
+    iframe.src = this.pdfUrl.changingThisBreaksApplicationSecurity;
+    document.body.appendChild(iframe);
+
+    iframe.onload = () => {
+      iframe.contentWindow?.print();
+    };
+
+  }
 
   onReset(){
+    this.showPreview=false;
     this.patientForm.reset();
     this.openfirst=false;
     this.openHilum=false;

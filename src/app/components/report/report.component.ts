@@ -194,16 +194,17 @@ export class ReportComponent implements OnInit {
   }
 
   onClick(patientForm:NgForm){
-    // if(patientForm.invalid){
-    //   this.openDialog('fields');
-    //   return
-    // }
+    if(patientForm.invalid){
+      this.openDialog('fields');
+      return
+    }
     this.businessData.savePatientData(patientForm.value);
     this.businessData.getPdf().subscribe(
       pdfBlob => {
         this.pdfUrl = this.getSafeUrl(pdfBlob);
         this.showPreview=true;
         this.onPdfLoad();
+        
         // window.open(this.pdfUrl.changingThisBreaksApplicationSecurity, '_blank'); 
       },
       error => {
@@ -220,25 +221,36 @@ export class ReportComponent implements OnInit {
       height:'auto',
       data:{msg:mesg},
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==='reset'){
+        document.body.removeChild(this.iframe);
+        this.onReset();
+      }
+    });
   }
   iframe:any;
 
   onPdfLoad(): void {
-    console.log('/...../');
+    this.iframe = document.createElement('iframe');
+    this.iframe.style.visibility = 'hidden';
+    this.iframe.src = this.pdfUrl.changingThisBreaksApplicationSecurity;
+    document.body.appendChild(this.iframe);
 
-    const iframe = document.createElement('iframe');
-    iframe.style.visibility = 'hidden';
-    iframe.src = this.pdfUrl.changingThisBreaksApplicationSecurity;
-    document.body.appendChild(iframe);
-
-    iframe.onload = () => {
-      iframe.contentWindow?.print();
+    this.iframe.onload = () => {
+      this.iframe.contentWindow?.print();
+      setTimeout(() => {
+        this.showPreview=false;
+      }, 2000);
+      setTimeout(() => {
+        this.openDialog('reset');
+      }, 3000);
     };
 
   }
 
   onReset(){
     this.showPreview=false;
+    document.body.removeChild(this.iframe);
     this.patientForm.reset();
     this.openfirst=false;
     this.openHilum=false;
@@ -259,7 +271,6 @@ export class ReportComponent implements OnInit {
     this.openCostophrenicAngles=false;
     this.openCardicShaped=false;
     this.ribnumber=false;
-
   }
 
 }

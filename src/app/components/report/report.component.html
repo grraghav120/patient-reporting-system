@@ -1,3 +1,4 @@
+<div class="loading-overlay" [ngClass]="{ 'show': showPreview }"></div>
 <div class="container">
   <hr>
   <div class="heading">
@@ -783,6 +784,9 @@
       <button mat-raised-button color="primary" type="submit">Proceed<mat-icon>done</mat-icon></button>
       <hr>
     </div>
+    <!-- <div *ngIf="showPreview">
+      <p>ghooollllaaaaa</p>
+    </div> -->
   </form>
 </div>
 

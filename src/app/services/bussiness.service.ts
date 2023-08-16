@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,25 @@ export class BussinessService {
 
   savePatientData(data:any){
     this.allPatientData=data;
-    console.log(this.allPatientData,'from service'); 
-    this.wordFileSaveApi();
+    console.log(this.allPatientData,'from service');
   }
 
   getAllPatientData(){
     return this.allPatientData;
   }
 
-  wordFileSaveApi(){
+  getPdf(): Observable<Blob> {
     let body=this.allPatientData;
-    this.http.post('http://127.0.0.1:8000/wordfile/',body).subscribe((res:any)=>{
-      console.log(res);
-    });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post('http://127.0.0.1:8000/wordfile/', body, { headers, responseType: 'blob' })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('An error occurred:', error);
+    return throwError('Something went wrong; please try again later.');
   }
 
 }

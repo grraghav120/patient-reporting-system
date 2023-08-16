@@ -10,16 +10,16 @@
     <div class="row secondRow">
       <!-- First row with 3 inputs -->
       <div class="col-md-4 col-sm-12 columns">
-        <label>Name*</label>
+        <label>Patient Name*</label>
         <input
           type="text"
           required
           ngModel
-          name="FirstName"
+          name="FullName"
           class="form-control custom-input"
-          placeholder="Full Name"
+          placeholder="Patient Full Name"
         />
-        <div class="error" *ngIf="patientForm.controls['FirstName']?.touched && patientForm.controls['FirstName'].errors?.['required']">Name is required</div>
+        <div class="error" *ngIf="patientForm.controls['FullName']?.touched && patientForm.controls['FullName'].errors?.['required']">Name is required</div>
       </div>
       <div class="col-md-4 col-sm-12 columns">
         <label>UHID*</label>
@@ -53,7 +53,7 @@
         <input
           type="text"
           ngModel
-          name="age/sex"
+          name="age"
           class="form-control custom-input"
           placeholder="Age/Sex"
           required
@@ -111,9 +111,9 @@
         <select class="form-select" required aria-label="Default select example" [(ngModel)]="BronchoVascularMarkingSide"
         name="BronchoVascularMarkingSide">
           <option value="" disabled selected>Select</option>
-          <option value="right">Right</option>
-          <option value="left">Left</option>
-          <option value="bilateral">Bilateral</option>
+          <option value="Right">Right</option>
+          <option value="Left">Left</option>
+          <option value="Bilateral">Bilateral</option>
         </select>
       </div>
       <div class="col-md-4 col-sm-12 columns" *ngIf="openfirst">
@@ -122,7 +122,7 @@
         [(ngModel)]="BronchoVascularMarkingRegion"
         name="BronchoVascularMarkingRegion">
           <option value="" disabled selected>Select</option>
-          <option value="all">All Zones</option>
+          <option value="All Zones">All Zones</option>
           <option value="Upper Zone">Upper Zone</option>
           <option value="Mid Zone">Mid Zone</option>
           <option value="Lower Zone">Lower Zone</option>
@@ -173,6 +173,7 @@
           <option value="Upper Zone">Upper Zone</option>
           <option value="Mid Zone">Mid Zone</option>
           <option value="Lower Zone">Lower Zone</option>
+          <option value="Both Upper and Lower zone">Both Upper and Lower zone</option>
         </select>
       </div>
     </div>
@@ -219,6 +220,7 @@
           <option value="Upper Zone">Upper Zone</option>
           <option value="Mid Zone">Mid Zone</option>
           <option value="Lower Zone">Lower Zone</option>
+          <option value="Both Upper and Lower zone">Both Upper and Lower zone</option>
         </select>
       </div>
     </div>
@@ -245,8 +247,8 @@
         <select class="form-select" required aria-label="Default select example" [(ngModel)]="massesSide"
         name="massesSide" >
           <option value="" disabled selected>Select</option>
-          <option value="right">Right</option>
-          <option value="left">Left</option>
+          <option value="Right">Right</option>
+          <option value="Left">Left</option>
           <option value="Bilateral">Bilateral</option>
         </select>
       </div>
@@ -255,7 +257,8 @@
         <select class="form-select" required aria-label="Default select example" [(ngModel)]="massesRegion"
         name="massesRegion">
           <option value="" disabled selected>Select</option>
-          <option value="all">All Zones</option>
+          <option value="All Zones">All Zones</option>
+          <option value="Both Upper and Lower zone">Both Upper and Lower zone</option>
           <option value="Upper Mid Zone">Upper Mid Zone</option>
           <option value="Lower Mid Zone">Lower Mid Zone</option>
           <option value="Upper Zone">Upper Zone</option>
@@ -284,9 +287,7 @@
     <!--Hilum-->
     <div class="row">
         <div><label>Hilum*</label></div>
-        <div class="col-md-4 col-sm-12 columns">
-        <!-- <div class="col-md-4 col-sm-12 columns">-->
-          
+        <div class="col-md-4 col-sm-12 columns">      
           <div><label>Please Specify Hilum Side*</label></div>
           <select class="form-select" required aria-label="Default select example" [(ngModel)]="hilumSide"
           name="hilumSide">
@@ -295,7 +296,6 @@
             <option value="Left">Left</option>
             <option value="Bilateral">Bilateral</option>
           </select>
-        <!--</div> -->
         
       </div>
       <div class="col-md-4 col-sm-12 columns">
@@ -311,9 +311,6 @@
           <option value="" disabled selected>Select</option>
           <option value="Normal">Normal</option>
           <option value="Prominent">Prominent</option>
-          <!-- <option value="Hilar Adenopathy">Hilar Adenopathy</option>
-          <option value="Mass lesion">Mass lesion</option> -->
-          <!-- <option value="Nil">Nil</option> -->
         </select>
       </div>
       <div class="col-md-4 col-sm-12 columns" *ngIf="openHilum">
@@ -374,8 +371,8 @@
           >
             <option value="" disabled selected>Select</option>
             <option value="Normal">Normal</option>
-            <option value="shifted">Shifted</option>
-            <option value="widening">Widening of Mediastinal</option>
+            <option value="Shift">Shifted</option>
+            <option value="Widening of Mediastinal">Widening of Mediastinal</option>
             <!-- <option value="mass lesion">Mass lesion</option> -->
             <option value="Nil">Nil</option>
           </select>
@@ -545,7 +542,7 @@
             <option value="" disabled selected>Select</option>
             <option value="Blunt">Blunt</option>
             <option value="Normal">Normal</option>
-            <option value="obscured">Obscured</option>
+            <option value="Obscured">Obscured</option>
           </select>
         </div>
         
@@ -605,8 +602,8 @@
           <select class="form-select" required aria-label="Default select example" [(ngModel)]="BonyCageSide"
           name="BonyCageSide">
             <option value="" disabled selected>Select</option>
-            <option value="right">Right</option>
-            <option value="left">Left</option>
+            <option value="Right">Right</option>
+            <option value="Left">Left</option>
             <option value="Bilateral">Bilateral</option>
 
           </select>
@@ -723,7 +720,7 @@
             <option value="" disabled selected>Select</option>
             <option value="Normal">Normal</option>
             <option value="Abnormal">Abnormal</option>
-            <option value="Nil">Nil</option>
+            <!-- <option value="Nil">Nil</option> -->
           </select>
         </div>
         <div class="col-md-4 col-sm-12 columns" *ngIf="openDiaphragm">

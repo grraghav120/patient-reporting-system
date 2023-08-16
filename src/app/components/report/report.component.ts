@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { DomSanitizer } from '@angular/platform-browser';
 import { BussinessService } from 'src/app/services/bussiness.service';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
 
@@ -30,10 +31,12 @@ export class ReportComponent implements OnInit {
   openCostophrenicAngles: boolean=false;
   openCardicShaped: boolean=false;
   ribnumber: boolean=false;
+  pdfUrl: any;
 
   constructor(
     public dialog: MatDialog,
-    public businessData:BussinessService
+    public businessData:BussinessService,
+    private sanitizer: DomSanitizer,
     ){}
 
   CardiacShape:any="";
@@ -121,7 +124,7 @@ export class ReportComponent implements OnInit {
     else this.openTrachea=false;
   }
   onMediastinal(event:any){
-    if(event.target.value==='shifted') this.openMedia=true;
+    if(event.target.value==='Shift') this.openMedia=true;
     else this.openMedia=false;
   }
   onCardicShapeAbnormal(event:any){
@@ -184,13 +187,28 @@ export class ReportComponent implements OnInit {
     if(event.target.value==='Blunt') this.openCostophrenicAngles=true;
     else this.openCostophrenicAngles=false;
   }
+
+  private getSafeUrl(blob: Blob): any {
+    const unsafeUrl = URL.createObjectURL(blob);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(unsafeUrl);
+  }
+
   onClick(patientForm:NgForm){
     if(patientForm.invalid){
       this.openDialog('fields');
       return
     }
     this.businessData.savePatientData(patientForm.value);
-    this.openDialog('alert')
+    this.businessData.getPdf().subscribe(
+      pdfBlob => {
+        this.pdfUrl = this.getSafeUrl(pdfBlob);
+        window.open(this.pdfUrl.changingThisBreaksApplicationSecurity, '_blank'); 
+      },
+      error => {
+        this.openDialog('pdfError');
+      }
+    );
+    
   }
 
   openDialog(mesg:any){

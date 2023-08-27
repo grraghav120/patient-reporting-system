@@ -22,7 +22,7 @@ export class BussinessService {
   getPdf(): Observable<Blob> {
     let body=this.allPatientData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post('http://127.0.0.1:8000/wordfile/', body, { headers, responseType: 'blob' })
+    return this.http.post('https://reportapi.onrender.com/wordfile/', body, { headers, responseType: 'blob' })
       .pipe(
         catchError(this.handleError)
       );

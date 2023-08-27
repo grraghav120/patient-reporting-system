@@ -250,7 +250,6 @@ export class ReportComponent implements OnInit {
 
   onReset(){
     this.showPreview=false;
-    // document.body.removeChild(this.iframe);
     this.patientForm.reset();
     this.openfirst=false;
     this.openHilum=false;
@@ -271,6 +270,7 @@ export class ReportComponent implements OnInit {
     this.openCostophrenicAngles=false;
     this.openCardicShaped=false;
     this.ribnumber=false;
+    // document.body.removeChild(this.iframe);
   }
 
 }

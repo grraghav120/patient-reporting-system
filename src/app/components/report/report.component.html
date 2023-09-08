@@ -81,6 +81,8 @@
           name="date"
           class="form-control custom-input"
           placeholder="dd/mm/yyyy"
+          [min]="mindate"
+          [max]="maxdate"
           required
         />
         <div class="error" *ngIf="patientForm.controls['date']?.touched && patientForm.controls['date'].errors?.['required']">Date is required</div>
@@ -779,14 +781,20 @@
       </div>
     </div>
     <hr>
+    <div class="row">
+      <div class="col-md-6 col-sm-6 columns">
+        <h4> Please Upload Xray-Image* </h4>
+      </div>
+      <div class="col-md-6 col-sm-6 columns">
+        <button mat-raised-button color="accent" type="button" (click)="imagePicker.click()">Upload Image</button>
+        <input type="file" #imagePicker hidden name="xrayImage" (change)="onImageUpload($event)" required [(ngModel)]="xrayImage" ><p>{{fileName}}</p>
+      </div>
+    </div>
     <div class="btns">
       <button mat-raised-button (click)="onReset()" type="reset" style="margin-right: 10px;">Reset<mat-icon>autorenew</mat-icon></button>
       <button mat-raised-button color="primary" type="submit">Proceed<mat-icon>done</mat-icon></button>
       <hr>
     </div>
-    <!-- <div *ngIf="showPreview">
-      <p>ghooollllaaaaa</p>
-    </div> -->
   </form>
 </div>
 

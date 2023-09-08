@@ -32,12 +32,19 @@ export class ReportComponent implements OnInit {
   openCardicShaped: boolean=false;
   ribnumber: boolean=false;
   pdfUrl: any;
-
+  xrayImage:any;
+  maxdate:any;
+  mindate:any;
+  fileName: any='';
   constructor(
     public dialog: MatDialog,
     public businessData:BussinessService,
     private sanitizer: DomSanitizer,
-    ){}
+    ){
+      let todayDate=new Date();
+      this.mindate=todayDate;
+      this.maxdate=todayDate;
+    }
 
   CardiacShape:any="";
   BronchoVascularMarking="";
@@ -86,6 +93,7 @@ export class ReportComponent implements OnInit {
   SoftTissueAbnormal="";
   BreastShadowAbnormal="";
   showPreview:boolean=false;
+
   ngOnInit(): void {
     
   }
@@ -198,11 +206,13 @@ export class ReportComponent implements OnInit {
       this.openDialog('fields');
       return
     }
+    // console.log(this.patientForm.value);
+    this.showPreview=true;
     this.businessData.savePatientData(patientForm.value);
     this.businessData.getPdf().subscribe(
       pdfBlob => {
         this.pdfUrl = this.getSafeUrl(pdfBlob);
-        this.showPreview=true;
+        
         this.onPdfLoad();
         
         // window.open(this.pdfUrl.changingThisBreaksApplicationSecurity, '_blank'); 
@@ -243,7 +253,7 @@ export class ReportComponent implements OnInit {
       }, 2000);
       setTimeout(() => {
         this.openDialog('reset');
-      }, 3000);
+      }, 5000);
     };
 
   }
@@ -270,7 +280,20 @@ export class ReportComponent implements OnInit {
     this.openCostophrenicAngles=false;
     this.openCardicShaped=false;
     this.ribnumber=false;
+    this.fileName='';
     // document.body.removeChild(this.iframe);
+  }
+
+  onImageUpload(event:any){
+    console.log(event);
+    if(event.srcElement.files.length!=0){
+      this.fileName=event.srcElement.files[0].name;
+      const file: File = event.target.files[0];
+      this.patientForm.value['image']=file;
+    }
+    else{
+      this.fileName='';
+    }
   }
 
 }

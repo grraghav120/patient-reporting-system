@@ -1,3 +1,4 @@
+<!-- Code by Raghav Garg (FrontEnd) -->
 <div class="loading-overlay" [ngClass]="{ 'show': showPreview }"></div>
 <div class="container">
   <hr>
@@ -781,7 +782,7 @@
       </div>
     </div>
     <hr>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-6 col-sm-6 columns">
         <h4> Please Upload Xray-Image* </h4>
       </div>
@@ -789,7 +790,7 @@
         <button mat-raised-button color="accent" type="button" (click)="imagePicker.click()">Upload Image</button>
         <input type="file" #imagePicker hidden name="xrayImage" (change)="onImageUpload($event)" required [(ngModel)]="xrayImage" ><p>{{fileName}}</p>
       </div>
-    </div>
+    </div> -->
     <div class="btns">
       <button mat-raised-button (click)="onReset()" type="reset" style="margin-right: 10px;">Reset<mat-icon>autorenew</mat-icon></button>
       <button mat-raised-button color="primary" type="submit">Proceed<mat-icon>done</mat-icon></button>

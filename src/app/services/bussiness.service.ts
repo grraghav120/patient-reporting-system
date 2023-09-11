@@ -1,13 +1,21 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-
+import { setup } from './setup';
 @Injectable({
   providedIn: 'root'
 })
 export class BussinessService {
-
-  constructor(public http:HttpClient) { }
+  apiUrl:any;
+  constructor(public http:HttpClient) {
+    if(setup.production){
+      this.apiUrl=setup.API_URL;
+    }
+    else{
+      this.apiUrl=setup.API_URL_LOCAL;
+    }
+    console.log(this.apiUrl);
+  }
   private allPatientData:any;
 
   savePatientData(data:any){
@@ -22,7 +30,7 @@ export class BussinessService {
   getPdf(): Observable<Blob> {
     let body=this.allPatientData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post('https://reportapi.onrender.com/wordfile/', body, { headers, responseType: 'blob' })
+    return this.http.post(this.apiUrl, body, { headers, responseType: 'blob' })
       .pipe(
         catchError(this.handleError)
       );

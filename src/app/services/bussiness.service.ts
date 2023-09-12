@@ -30,10 +30,18 @@ export class BussinessService {
   getPdf(): Observable<Blob> {
     let body=this.allPatientData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.apiUrl, body, { headers, responseType: 'blob' })
+    return this.http.post(this.apiUrl+'wordfile/', body, { headers, responseType: 'blob' })
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  saveDataToDB(){
+    return this.http.post(this.apiUrl+'medical-data/',this.allPatientData);
+  }
+
+  getAllDataFromDB(){
+    return this.http.get(this.apiUrl+'medical-data/');
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

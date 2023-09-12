@@ -17,7 +17,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from './shared/alert/alert.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { FooterComponent } from './shared/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ReportComponent,
     AlertComponent,
     DashboardComponent,
+    AdminDashboardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

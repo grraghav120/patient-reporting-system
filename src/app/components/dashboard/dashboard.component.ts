@@ -7,6 +7,7 @@ import { BussinessService } from 'src/app/services/bussiness.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit{
+  termsCondition:boolean=false;
   constructor(
     public businessData:BussinessService,
   ){}
@@ -16,7 +17,8 @@ export class DashboardComponent implements OnInit{
   
   onGetAllData(){
     this.businessData.getAllDataFromDB().subscribe((res)=>{
-      console.log(res);
+      // console.log(res);
+      this.businessData.downloadCSV(res);
     });
   }
 

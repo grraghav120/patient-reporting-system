@@ -49,4 +49,41 @@ export class BussinessService {
     return throwError('Something went wrong; please try again later.');
   }
 
+  downloadCSV(data: any) {
+    if (!data) {
+      console.error('No data to download.');
+      return;
+    }
+    console.log('data',data);
+    const csv = this.convertToCSV(data);
+    console.log('csv',csv);
+    if (!csv) {
+      console.error('Error converting data to CSV format.');
+      return;
+    }
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    // Create a download link
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'data.csv';
+    link.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  private convertToCSV(data: any[]): string {
+    const csvRows = [];
+    if (!data || data.length === 0) {
+      return '';
+    }
+    const headers = Object.keys(data[0]);
+    csvRows.push(headers.join(','));
+    data.forEach(item => {
+      const values = headers.map(header => item[header] !== undefined ? item[header] : '');
+      csvRows.push(values.join(','));
+    });
+    return csvRows.join('\n');
+  }
+
 }

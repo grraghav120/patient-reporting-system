@@ -206,15 +206,22 @@ export class ReportComponent implements OnInit {
       this.openDialog('fields');
       return
     }
-    // console.log(this.patientForm.value);
     this.showPreview=true;
     this.businessData.savePatientData(patientForm.value);
     this.businessData.getPdf().subscribe(
       pdfBlob => {
-        this.pdfUrl = this.getSafeUrl(pdfBlob);
-        
-        this.onPdfLoad();
-        
+
+        // first save data then generate PDF
+        this.businessData.saveDataToDB().subscribe((res)=>{
+            // console.log(res);
+            this.pdfUrl = this.getSafeUrl(pdfBlob);
+            this.onPdfLoad();
+        },
+        error => {
+          this.showPreview=false;
+          this.openDialog('pdfError');
+        });
+
         // window.open(this.pdfUrl.changingThisBreaksApplicationSecurity, '_blank'); 
       },
       error => {
@@ -295,5 +302,6 @@ export class ReportComponent implements OnInit {
       this.fileName='';
     }
   }
+
 
 }

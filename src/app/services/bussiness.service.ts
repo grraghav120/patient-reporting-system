@@ -30,15 +30,60 @@ export class BussinessService {
   getPdf(): Observable<Blob> {
     let body=this.allPatientData;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.apiUrl, body, { headers, responseType: 'blob' })
+    return this.http.post(this.apiUrl+'wordfile/', body, { headers, responseType: 'blob' })
       .pipe(
         catchError(this.handleError)
       );
   }
 
+  saveDataToDB(){
+    return this.http.post(this.apiUrl+'medical-data/',this.allPatientData);
+  }
+
+  getAllDataFromDB(){
+    return this.http.get(this.apiUrl+'medical-data/');
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     console.error('An error occurred:', error);
     return throwError('Something went wrong; please try again later.');
+  }
+
+  downloadCSV(data: any) {
+    if (!data) {
+      console.error('No data to download.');
+      return;
+    }
+    // console.log('data',data);
+    const csv = this.convertToCSV(data);
+    // console.log('csv',csv);
+    if (!csv) {
+      console.error('Error converting data to CSV format.');
+      return;
+    }
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+
+    // Create a download link
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'data.csv';
+    link.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+  private convertToCSV(data: any[]): string {
+    const csvRows = [];
+    if (!data || data.length === 0) {
+      return '';
+    }
+    const headers = Object.keys(data[0]);
+    csvRows.push(headers.join(','));
+    data.forEach(item => {
+      const values = headers.map(header => item[header] !== undefined ? item[header] : '');
+      csvRows.push(values.join(','));
+    });
+    return csvRows.join('\n');
   }
 
 }

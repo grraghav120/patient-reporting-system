@@ -33,8 +33,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style=" padding-top: 5px;">
-                        <div class="col-md-6 col-sm-12">
+                    <div class="row" style=" padding-top: 10px;">
+                        <div class="col-md-4 col-sm-12">
+                            <label>Organization Username* :</label>
+                            <input type="text" required ngModel name="username" class="form-control custom-input"
+                                placeholder="Please Enter Username" />
+                            <div class="error"
+                                *ngIf="registerForm.controls['username']?.touched && registerForm.controls['username'].errors?.['required']">
+                                UserName is required
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
                             <label>State*: </label>
                             <select class="form-select" ngModel required name="state"
                                 aria-label="Default select example">
@@ -68,7 +77,7 @@
                                 <option value="West Bengal">West Bengal</option>
                             </select>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
                             <label>City* :</label>
                             <input type="text" required ngModel name="city" class="form-control custom-input"
                                 placeholder="City" />

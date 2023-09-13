@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,7 +12,7 @@ export class AdminDashboardComponent implements OnInit {
   
   @ViewChild('adminForm') adminForm!:NgForm;
 
-  constructor(){}
+  constructor(public route:Router,public auth:AuthService){}
   ngOnInit(): void {
     
   }
@@ -19,7 +21,9 @@ export class AdminDashboardComponent implements OnInit {
     if(form.invalid){
       return;
     }
-    console.log(form.value);
+    this.auth.setUserRole('admin');
+    this.route.navigate(['/dashboard']);
+    // console.log(form.value);
   }
 
 }

@@ -21,11 +21,11 @@ export class UserRegisterComponent implements OnInit {
     if(!this.termsCondition || form.invalid) return;
     console.log(form.value);
     //data save table main  and navigate home
-    this.route.navigate(['home']);
+    this.onLogin();
   }
 
   onLogin(){
-    this.route.navigate(['login']);
+    this.route.navigate(['/login']);
   }
 
   openDialog() {

@@ -54,9 +54,9 @@ export class BussinessService {
       console.error('No data to download.');
       return;
     }
-    console.log('data',data);
+    // console.log('data',data);
     const csv = this.convertToCSV(data);
-    console.log('csv',csv);
+    // console.log('csv',csv);
     if (!csv) {
       console.error('Error converting data to CSV format.');
       return;

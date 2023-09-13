@@ -9,16 +9,16 @@
                 <form (ngSubmit)="onClick(adminForm)" #adminForm="ngForm">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
-                            <label>Username:</label>
+                            <label>Username* :</label>
                             <input type="text" required ngModel name="UserName" class="form-control custom-input"
-                                placeholder="Enter User Name" />
+                                placeholder="Enter User Name" autocomplete="off" />
                             <div class="error"
                                 *ngIf="adminForm.controls['UserName']?.touched && adminForm.controls['UserName'].errors?.['required']">
                                 Username is required
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12" style="padding-top: 5px;">
-                            <label>Password:</label>
+                            <label>Password* :</label>
                             <input type="password" required ngModel name="Password" class="form-control custom-input"
                                 placeholder="Please Enter Password" />
                             <div class="error"

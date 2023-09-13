@@ -19,6 +19,9 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { TermsconditionComponent } from './shared/termscondition/termscondition.component';
+import { HeaderComponent } from './shared/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +31,9 @@ import { FooterComponent } from './shared/footer/footer.component';
     DashboardComponent,
     AdminDashboardComponent,
     FooterComponent,
+    UserRegisterComponent,
+    TermsconditionComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

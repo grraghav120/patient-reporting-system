@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit{
   
   onGetAllData(){
     this.businessData.getAllDataFromDB().subscribe((res)=>{
-      // console.log(res);
       this.businessData.downloadCSV(res);
     });
   }

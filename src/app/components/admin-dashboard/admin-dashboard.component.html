@@ -1,10 +1,11 @@
-<div class="mainBoard">
+<!-- <div class="mainBoard">
     <div class="cardLayout">
         <div class="card">
             <h2 class="card-header" style="background-color: rgb(144, 144, 163); text-align: center">
                 Application Administration
-            </h2>
+            </h2> -->
             <div class="card-body">
+                <h3>Login As Admin</h3>
                 <form (ngSubmit)="onClick(adminForm)" #adminForm="ngForm">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
@@ -18,7 +19,7 @@
                         </div>
                         <div class="col-md-12 col-sm-12" style="padding-top: 5px;">
                             <label>Password:</label>
-                            <input type="text" required ngModel name="Password" class="form-control custom-input"
+                            <input type="password" required ngModel name="Password" class="form-control custom-input"
                                 placeholder="Please Enter Password" />
                             <div class="error"
                                 *ngIf="adminForm.controls['Password']?.touched && adminForm.controls['Password'].errors?.['required']">
@@ -31,6 +32,6 @@
                     </div>
                 </form>
             </div>
-        </div>
+        <!-- </div>
     </div>
-</div>
+</div> -->

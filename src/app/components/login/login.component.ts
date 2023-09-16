@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   userType:any='user';
-  email:any='';
+  username:any='';
   remeberMe:boolean=false;
   @ViewChild('loginForm') loginForm!:NgForm
   constructor(public route:Router,public auth:AuthService){}
@@ -18,8 +18,7 @@ export class LoginComponent implements OnInit {
     if(sessionStorage.getItem('User')){
       console.log(sessionStorage.getItem('User'));
       let val=sessionStorage.getItem('User');
-      this.email=val;
-      
+      this.username=val;
     }
   }
   onRadioChange(event:any){
@@ -33,7 +32,6 @@ export class LoginComponent implements OnInit {
     this.auth.setUserRole('user');
     this.route.navigate(['/home']);
     // console.log('userlogin',form.value);
-    
   }
   onRegister(){
     this.route.navigate(['/register']);

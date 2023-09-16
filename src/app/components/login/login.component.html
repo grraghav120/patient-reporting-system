@@ -23,12 +23,12 @@
             <form (ngSubmit)="onUserLogin(loginForm)" #loginForm="ngForm">
               <div class="row">
                 <div class="col-md-12 col-sm-12">
-                  <label>Email *:</label>
-                  <input type="email" required [(ngModel)]="email" name="email" autocomplete="off" class="form-control custom-input"
-                    placeholder="Enter Email Address" />
+                  <label>Organization User Name *:</label>
+                  <input type="email" required [(ngModel)]="username" name="username" autocomplete="off" class="form-control custom-input"
+                    placeholder="Enter Valid UserName" />
                   <div class="error"
-                    *ngIf="loginForm.controls['email']?.touched && loginForm.controls['email'].errors?.['required']">
-                    Email Address is required
+                    *ngIf="loginForm.controls['username']?.touched && loginForm.controls['username'].errors?.['required']">
+                    UserName is required
                   </div>
                 </div>
                 <div class="col-md-12 col-sm-12" style="padding-top: 5px;">
@@ -49,10 +49,10 @@
                 </label>
               </div>
               <div style="padding-top: 20px; align-items: center; text-align: center;">
-                <button mat-raised-button color="primary">Log in</button>
+                <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Log in</button>
               </div>
             </form>
-            <div>
+            <div style="padding-top: 5px;">
               <p>New User? Register your organization <button  class="btns" (click)="onRegister()">Here</button></p>
             </div>
           </div>

@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
 import { ReportComponent } from './components/report/report.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
@@ -49,6 +50,7 @@ import { HeaderComponent } from './shared/header/header.component';
     MatDialogModule,
     MatIconModule,
     HttpClientModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

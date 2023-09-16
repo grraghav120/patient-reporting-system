@@ -12,10 +12,10 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <label>Organization Name* :</label>
-                            <input type="text" required ngModel name="name" class="form-control custom-input"
+                            <input type="text" required ngModel name="organization_name" class="form-control custom-input"
                                 placeholder="Organization Name" autocomplete="off" />
                             <div class="error"
-                                *ngIf="registerForm.controls['name']?.touched && registerForm.controls['name'].errors?.['required']">
+                                *ngIf="registerForm.controls['organization_name']?.touched && registerForm.controls['organization_name'].errors?.['required']">
                                 Name is required
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" name="terms"
                                 required [(ngModel)]="termsCondition" disabled>
                             <label>
-                                Agree to <button type="button" class="btns-terms" (click)="openDialog()">Terms and Condition/Privacy Policy*</button>
+                                I Agree to<button type="button" class="btns-terms" (click)="openDialog()">Terms and Condition</button>*
                             </label>
                         </div>
                     </div>

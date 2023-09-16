@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   onUserLogin(form:NgForm){
     if(form.invalid) return;
     if(this.remeberMe){
-      sessionStorage.setItem('User',form.value.email);
+      sessionStorage.setItem('User',form.value.username);
     }
     this.auth.setUserRole('user');
     this.route.navigate(['/home']);

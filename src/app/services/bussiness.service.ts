@@ -86,4 +86,18 @@ export class BussinessService {
     return csvRows.join('\n');
   }
 
+  public getPass(){
+    return this.generateHexadecimalPassword(12);
+  }
+
+  private generateHexadecimalPassword(length:any) {
+    const hexChars = '0123456789ABCDEF';
+    let password = '';
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * hexChars.length);
+      password += hexChars.charAt(randomIndex);
+    }
+    return password;
+  }
+
 }

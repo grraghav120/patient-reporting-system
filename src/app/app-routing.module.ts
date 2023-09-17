@@ -1,22 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ReportComponent } from './components/report/report.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoginComponent } from './components/login/login.component';
-import { UserRegisterComponent } from './components/user-register/user-register.component';
-import { AuthGuard } from './components/login/auth.guard';
 
 const routes: Routes = [
-  {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},
-  {path:'home',component:ReportComponent,canActivate:[AuthGuard]},
-  {path:'register',component:UserRegisterComponent},
-  {path:'login',component:LoginComponent},
-  {path:'**',redirectTo:'login',pathMatch:'full'},
-  {path:'',redirectTo:'login',pathMatch:'full'}
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./components/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+  },
+  // {
+  //   path: 'home',
+  //   loadChildren: () =>
+  //     import('./components/home/home.module').then((m) => m.HomeModule),
+  // },
+  {
+    path: 'report',
+    loadChildren: () =>
+      import('./components/report/report.module').then((m) => m.ReportModule),
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./components/user-register/user-register.module').then(
+        (m) => m.UserRegisterModule
+      ),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./components/login/login.module').then((m) => m.LoginModule),
+  },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

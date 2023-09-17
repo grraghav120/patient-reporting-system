@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('User',form.value.username);
     }
     this.auth.setUserRole('user');
-    this.route.navigate(['/home']);
+    this.route.navigate(['/report']);
     // console.log('userlogin',form.value);
   }
   onRegister(){

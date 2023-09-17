@@ -6,51 +6,31 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { LoginComponent } from './components/login/login.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-import { ReportComponent } from './components/report/report.component';
-import {MatDialogModule} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { AlertComponent } from './shared/alert/alert.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
-import { TermsconditionComponent } from './shared/termscondition/termscondition.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ReportComponent,
     AlertComponent,
     DashboardComponent,
     AdminDashboardComponent,
-    FooterComponent,
     UserRegisterComponent,
-    TermsconditionComponent,
-    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MatSelectModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     FormsModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatIconModule,
     HttpClientModule,
-    MatMenuModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

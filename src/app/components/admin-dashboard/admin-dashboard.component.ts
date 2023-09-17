@@ -22,7 +22,7 @@ export class AdminDashboardComponent implements OnInit {
       return;
     }
     this.auth.setUserRole('admin');
-    this.route.navigate(['/dashboard']);
+    // this.route.navigate(['/dashboard']);
     // console.log(form.value);
   }
 
